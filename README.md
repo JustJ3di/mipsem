@@ -1,3 +1,3 @@
 # mipsem
 
-sh run.h <filename>
+sh run.h "filename" for run

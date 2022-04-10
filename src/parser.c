@@ -30,6 +30,7 @@ void *init_line(const char *string , int numb_istr,size_t size_line){
 
 		switch (string[i])
 		{
+		case '\t':
 		case '\0':
 		case '\n':
 		case ',':
