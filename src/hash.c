@@ -2,12 +2,9 @@
 
 
 
-int push_new_label(const char *label,int line){
+void push_new_label(const char *label,int line){
 
-    if (pop_istruction_number_from_label(label)!=-1)
-    {
-        return -1;
-    }
+
     
 
     int size_label = strlen(label);
@@ -36,7 +33,7 @@ int push_new_label(const char *label,int line){
     printf("label : (%s) saved at line %d\n",new->label,new->line_number);
 #endif
 
-    return 1;
+    
 
 }
 

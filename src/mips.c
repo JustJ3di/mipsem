@@ -16,7 +16,7 @@ static Line * init_stack(Line *stack,int *n){
 	
 	assert(stack!=NULL);
 
-	for (size_t i = 0; i < *n+INIT_SIZE; i++)
+	for (int i = 0; i < *n+INIT_SIZE; i++)
 	{
 		stack[i].istr =0;
 		stack[i].total_token = 0;

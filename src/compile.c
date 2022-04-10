@@ -10,8 +10,6 @@
 void set_value(const char *reg,int value){
 
 
-
-
     switch (reg[1])
     {
         case 'a':
@@ -255,9 +253,9 @@ li 	Rd, const 	load immediate
 
 int is_label(const char *lab){
 
-    char *key[] = {"add","addi","sub","mul","move","li","beq"};
+    char *key[] = {"add","addi","sub","mul","move","li","beq","b"};
     
-    for (size_t i = 0; i < 7; i++)
+    for (size_t i = 0; i < 8; i++)
     {
         
         if (strcmp(lab,key[i]) == 0)
@@ -279,10 +277,7 @@ void  compile(Line ist[],size_t n_istr){
     int istr = 0;
     while (istr < n_istr - 1)
     {
-        #if DEBUG
-        printf("%s %s %s\n",ist[istr].token[0],ist[istr].token[1],ist[istr].token[2]);
-        sleep(1);
-        #endif
+
 
         #if DEBUG
             printf("istr n %d\n",istr);
@@ -355,7 +350,8 @@ void  compile(Line ist[],size_t n_istr){
                         istr++;
 
                         if(is_label(ist[istr].token[0]) != 1){
-                            if(push_new_label(ist[istr].token[0],istr));  
+                            if(pop_istruction_number_from_label(ist[istr].token[0])<0)
+                                push_new_label(ist[istr].token[0],istr);  
                         }
 
                     } while ( strcmp(ist[istr].token[0],ist[is].token[3]) != 0);
@@ -374,7 +370,7 @@ void  compile(Line ist[],size_t n_istr){
             int is = istr;
             #if DEBUG
             printf("check = %d",check);
-           #endif
+            #endif
             if (check == -1)
             {
 
@@ -384,7 +380,8 @@ void  compile(Line ist[],size_t n_istr){
                     istr++;
 
                     if(is_label(ist[istr].token[0]) != 1){
-                        if(push_new_label(ist[istr].token[0],istr));  
+                        if(pop_istruction_number_from_label(ist[istr].token[0])<0)
+                            push_new_label(ist[istr].token[0],istr);  
                     }
 
                     
@@ -398,7 +395,8 @@ void  compile(Line ist[],size_t n_istr){
               
         }else{
 
-            push_new_label(ist[istr].token[0],istr);
+            if(pop_istruction_number_from_label(ist[istr].token[0])<0)
+                push_new_label(ist[istr].token[0],istr);  
             
             istr++;
               

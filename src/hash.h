@@ -20,7 +20,7 @@ struct hash_label
 
 static Map *head = NULL;
 
-int push_new_label(const char *label,int line);
+void push_new_label(const char *label,int line);
 
 void print();
 
