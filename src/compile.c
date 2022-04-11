@@ -253,9 +253,9 @@ li 	Rd, const 	load immediate
 
 int is_label(const char *lab){
 
-    char *key[] = {"add","addi","sub","mul","move","li","beq","b"};
+    char *key[] = {"add","addi","sub","mul","rem","move","li","beq","b","jr"};
     
-    for (size_t i = 0; i < 8; i++)
+    for (size_t i = 0; i < 10; i++)
     {
         
         if (strcmp(lab,key[i]) == 0)
@@ -336,7 +336,7 @@ void  compile(Line ist[],size_t n_istr){
  
             if (pop_register(ist[istr].token[1]) == pop_register(ist[istr].token[2])){
 
-                int check = pop_istruction_number_from_label(ist[istr].token[1]);   
+                int check = pop_istruction_number_from_label(ist[istr].token[3]);   
                 int is = istr;
                 #if DEBUG
                 printf("check = %d",check);
@@ -348,6 +348,7 @@ void  compile(Line ist[],size_t n_istr){
                     {
                         
                         istr++;
+                        assert(istr < n_istr + 1);
 
                         if(is_label(ist[istr].token[0]) != 1){
                             if(pop_istruction_number_from_label(ist[istr].token[0])<0)
@@ -378,6 +379,7 @@ void  compile(Line ist[],size_t n_istr){
                 {
                     
                     istr++;
+                    assert(istr < n_istr + 1);
 
                     if(is_label(ist[istr].token[0]) != 1){
                         if(pop_istruction_number_from_label(ist[istr].token[0])<0)
@@ -393,6 +395,167 @@ void  compile(Line ist[],size_t n_istr){
             }else
                 istr = check ;
               
+        }else if (strcmp(ist[istr].token[0],"jr") == 0)
+        {
+            
+            istr = pop_register(ist[istr].token[1]);
+            istr++;
+
+        }else if (strcmp("bne",ist[istr].token[0])==0)
+        {
+            if (pop_register(ist[istr].token[1]) != pop_register(ist[istr].token[2])){
+
+                int check = pop_istruction_number_from_label(ist[istr].token[3]);   
+                int is = istr;
+                #if DEBUG
+                printf("check = %d",check);
+                #endif
+                if (check == -1)
+                {
+
+                    do
+                    {
+                        
+                        istr++;
+                        assert(istr < n_istr + 1);
+
+                        if(is_label(ist[istr].token[0]) != 1){
+                            if(pop_istruction_number_from_label(ist[istr].token[0])<0)
+                                push_new_label(ist[istr].token[0],istr);  
+                        }
+
+                    } while ( strcmp(ist[istr].token[0],ist[is].token[3]) != 0);
+
+                    istr++; 
+                
+                }else
+                    istr = check ;
+                }
+            istr++;
+        }else if (strcmp("ble",ist[istr].token[0])==0)
+        {
+            if (pop_register(ist[istr].token[1]) <= pop_register(ist[istr].token[2])){
+
+                int check = pop_istruction_number_from_label(ist[istr].token[3]);   
+                int is = istr;
+                #if DEBUG
+                printf("check = %d",check);
+                #endif
+                if (check == -1)
+                {
+
+                    do
+                    {
+                        
+                        istr++;
+                        assert(istr < n_istr + 1);
+
+                        if(is_label(ist[istr].token[0]) != 1){
+                            if(pop_istruction_number_from_label(ist[istr].token[0])<0)
+                                push_new_label(ist[istr].token[0],istr);  
+                        }
+
+                    } while ( strcmp(ist[istr].token[0],ist[is].token[3]) != 0);
+
+                    istr++; 
+                
+                }else
+                    istr = check ;
+                }
+            istr++;
+        }else if (strcmp("bge",ist[istr].token[0])==0)
+        {
+            if (pop_register(ist[istr].token[1]) >= pop_register(ist[istr].token[2])){
+
+                int check = pop_istruction_number_from_label(ist[istr].token[3]);   
+                int is = istr;
+                #if DEBUG
+                printf("check = %d",check);
+                #endif
+                if (check == -1)
+                {
+
+                    do
+                    {
+                        
+                        istr++;
+                        assert(istr < n_istr + 1);
+
+                        if(is_label(ist[istr].token[0]) != 1){
+                            if(pop_istruction_number_from_label(ist[istr].token[0])<0)
+                                push_new_label(ist[istr].token[0],istr);  
+                        }
+
+                    } while ( strcmp(ist[istr].token[0],ist[is].token[3]) != 0);
+
+                    istr++; 
+                
+                }else
+                    istr = check ;
+                }
+            istr++;
+        }else if (strcmp("blt",ist[istr].token[0])==0){
+
+            if (pop_register(ist[istr].token[1]) < pop_register(ist[istr].token[2])){
+
+                int check = pop_istruction_number_from_label(ist[istr].token[3]);   
+                int is = istr;
+                #if DEBUG
+                printf("check = %d",check);
+                #endif
+                if (check == -1)
+                {
+
+                    do
+                    {
+                        
+                        istr++;
+                        assert(istr < n_istr + 1);
+
+                        if(is_label(ist[istr].token[0]) != 1){
+                            if(pop_istruction_number_from_label(ist[istr].token[0])<0)
+                                push_new_label(ist[istr].token[0],istr);  
+                        }
+
+                    } while ( strcmp(ist[istr].token[0],ist[is].token[3]) != 0);
+
+                    istr++; 
+                
+                }else
+                    istr = check ;
+                }
+            istr++;
+        }else if (strcmp("bgt",ist[istr].token[0])==0)
+        {
+            if (pop_register(ist[istr].token[1]) > pop_register(ist[istr].token[2])){
+
+                int check = pop_istruction_number_from_label(ist[istr].token[3]);   
+                int is = istr;
+                #if DEBUG
+                printf("check = %d",check);
+                #endif
+                if (check == -1)
+                {
+
+                    do
+                    {
+                        
+                        istr++;
+                        assert(istr < n_istr + 1);
+
+                        if(is_label(ist[istr].token[0]) != 1){
+                            if(pop_istruction_number_from_label(ist[istr].token[0])<0)
+                                push_new_label(ist[istr].token[0],istr);  
+                        }
+
+                    } while ( strcmp(ist[istr].token[0],ist[is].token[3]) != 0);
+
+                    istr++; 
+                
+                }else
+                    istr = check ;
+                }
+            istr++;
         }else{
 
             if(pop_istruction_number_from_label(ist[istr].token[0])<0)

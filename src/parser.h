@@ -8,7 +8,6 @@
 
 #define DEBUG 1
 
-
 typedef struct line Line;
 
 struct line{
