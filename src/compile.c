@@ -1,6 +1,6 @@
 #include"mips.h"
 #include"parser.h"
-#include "hash.h"
+#include "stack.h"
 
 #if DEBUG
     #include<unistd.h>
@@ -333,9 +333,9 @@ void  compile(Line ist[],size_t n_istr){
 
         }else if (strcmp(ist[istr].token[0],"beq") == 0)
         {
- 
-            if (pop_register(ist[istr].token[1]) == pop_register(ist[istr].token[2])){
 
+            if (pop_register(ist[istr].token[1]) == pop_register(ist[istr].token[2])){
+                    
                 int check = pop_istruction_number_from_label(ist[istr].token[3]);   
                 int is = istr;
                 #if DEBUG

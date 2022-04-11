@@ -89,6 +89,13 @@ typedef struct mips
 }Mips;
 
 
+typedef enum sys_call{
+
+
+
+
+};
+
 
 static Mips mip = { .a0 = 0, 
                     .a1 = 0, 

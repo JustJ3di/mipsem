@@ -6,7 +6,7 @@
 
 #include"parser.h"
 #include"mips.h"
-#include "hash.h"
+#include "stack.h"
 
 #define INIT_SIZE 200
 
