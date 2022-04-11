@@ -395,6 +395,12 @@ void  compile(Line ist[],size_t n_istr){
             }else
                 istr = check ;
               
+        }else if (strcmp("j",ist[istr].token[0]) == 0)
+        {
+            
+            istr = ist[istr].token[1];
+            //istr++;
+
         }else if (strcmp(ist[istr].token[0],"jr") == 0)
         {
             
