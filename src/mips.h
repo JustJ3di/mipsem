@@ -89,11 +89,17 @@ typedef struct mips
 }Mips;
 
 
-typedef enum sys_call{
+enum sys_call{
 
-
-
-
+    PRINT_INT = 1,
+    PRINT_STRING = 4,
+    READ_INT = 5,
+    READ_STRING = 8,
+    SBRK  = 9,
+    EXIT = 10,
+    PRINT_CHAR = 11,
+    READ_CHAR = 12
+    
 };
 
 

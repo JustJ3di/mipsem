@@ -253,9 +253,9 @@ li 	Rd, const 	load immediate
 
 int is_label(const char *lab){
 
-    char *key[] = {"add","addi","sub","mul","rem","move","li","beq","b","jr"};
+    char *key[] = {"add","addi","sub","mul","rem","move","li","beq","b","jr","bgt","blt"};
     
-    for (size_t i = 0; i < 10; i++)
+    for (size_t i = 0; i < 12; i++)
     {
         
         if (strcmp(lab,key[i]) == 0)
@@ -398,7 +398,7 @@ void  compile(Line ist[],size_t n_istr){
         }else if (strcmp("j",ist[istr].token[0]) == 0)
         {
             
-            istr = ist[istr].token[1];
+            istr = atoi(ist[istr].token[1]);
             //istr++;
 
         }else if (strcmp(ist[istr].token[0],"jr") == 0)
@@ -562,10 +562,19 @@ void  compile(Line ist[],size_t n_istr){
                     istr = check ;
                 }
             istr++;
+        }else if (strcmp("globl.",ist[istr].token[0])== 0 )
+        {
+            push_new_label(ist[istr].token[1],istr);
+
         }else{
 
             if(pop_istruction_number_from_label(ist[istr].token[0])<0)
                 push_new_label(ist[istr].token[0],istr);  
+                if (strcmp(ist[istr].token[0],".asciiz") == 0)
+                {
+                    push_new_label(ist[istr].token[0],istr);
+                }
+                
             
             istr++;
               

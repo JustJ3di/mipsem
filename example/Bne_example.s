@@ -1,3 +1,5 @@
+.globl main
+.text
 li $s2 , 0
 li $s1 ,10
 li $s3 , 0
