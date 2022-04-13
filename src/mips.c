@@ -76,9 +76,11 @@ int main(int argc, char const *argv[]){
 
 	
 
-	compile(stack,istr+1);
+	compile(stack,istr);
+
 
 	free(stack);
+
 
 
 #if DEBUG

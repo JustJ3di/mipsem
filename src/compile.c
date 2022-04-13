@@ -7,6 +7,30 @@
 #endif
 
 
+int system_call(int istr,Line *ist){
+
+    int n = mip.v0;
+    switch (n)
+    {
+    case EXIT:
+        return EXIT;
+    case PRINT_STRING:
+        return PRINT_STRING;
+    case PRINT_CHAR:
+        return PRINT_CHAR;
+    case PRINT_INT:
+        return PRINT_INT;
+    case SBRK:
+        return SBRK;
+    default:
+        break;
+    }
+
+
+
+}
+
+
 void set_value(const char *reg,int value){
 
 
@@ -275,7 +299,7 @@ int is_label(const char *lab){
 void  compile(Line ist[],size_t n_istr){
 
     int istr = 0;
-    while (istr < n_istr - 1)
+    while (istr < n_istr)
     {
 
 
@@ -357,7 +381,7 @@ void  compile(Line ist[],size_t n_istr){
 
                     } while ( strcmp(ist[istr].token[0],ist[is].token[3]) != 0);
 
-                    istr++; 
+                    //istr++; 
                 
                 }else
                     istr = check ;
@@ -390,7 +414,7 @@ void  compile(Line ist[],size_t n_istr){
 
                 } while ( strcmp(ist[istr].token[0],ist[is].token[1]) != 0);
 
-                istr++; 
+                //istr++; 
                
             }else
                 istr = check ;
@@ -432,7 +456,7 @@ void  compile(Line ist[],size_t n_istr){
 
                     } while ( strcmp(ist[istr].token[0],ist[is].token[3]) != 0);
 
-                    istr++; 
+                   // istr++; 
                 
                 }else
                     istr = check ;
@@ -463,7 +487,7 @@ void  compile(Line ist[],size_t n_istr){
 
                     } while ( strcmp(ist[istr].token[0],ist[is].token[3]) != 0);
 
-                    istr++; 
+                    //istr++; 
                 
                 }else
                     istr = check ;
@@ -494,7 +518,7 @@ void  compile(Line ist[],size_t n_istr){
 
                     } while ( strcmp(ist[istr].token[0],ist[is].token[3]) != 0);
 
-                    istr++; 
+                    //istr++; 
                 
                 }else
                     istr = check ;
@@ -525,7 +549,7 @@ void  compile(Line ist[],size_t n_istr){
 
                     } while ( strcmp(ist[istr].token[0],ist[is].token[3]) != 0);
 
-                    istr++; 
+                    //istr++; 
                 
                 }else
                     istr = check ;
@@ -556,7 +580,7 @@ void  compile(Line ist[],size_t n_istr){
 
                     } while ( strcmp(ist[istr].token[0],ist[is].token[3]) != 0);
 
-                    istr++; 
+                    //istr++; 
                 
                 }else
                     istr = check ;
@@ -566,6 +590,28 @@ void  compile(Line ist[],size_t n_istr){
         {
             push_new_label(ist[istr].token[1],istr);
 
+        }else if (strcmp("syscall",ist[istr].token[0]) == 0)
+        {
+            int sys = system_call(istr,ist);
+            switch (sys)
+            {
+            case EXIT:
+                goto done;        
+
+            case PRINT_INT:
+                printf("%d\n",atoi(ist[mip.a0].token[1]));
+                break;
+
+            default:
+                break;
+            }
+            istr++;
+        }else if (strcmp("la",ist[istr].token[0]) == 0)
+        {
+            
+            set_value(ist[istr].token[1],pop_istruction_number_from_label(ist[istr].token[2]));//we save 
+            istr++;
+        
         }else{
 
             if(pop_istruction_number_from_label(ist[istr].token[0])<0)
@@ -581,12 +627,10 @@ void  compile(Line ist[],size_t n_istr){
         }
         
 
-   
-
     }
-    
 
-    printf("s0 = %d\n",mip.s0);
+done:
+	printf("s0 = %d\n",mip.s0);
     printf("s1 = %d\n",mip.s1);
     printf("s2 = %d\n",mip.s2);
     printf("s3 = %d\n",mip.s3);
@@ -595,5 +639,7 @@ void  compile(Line ist[],size_t n_istr){
     printf("s5 = %d\n",mip.s6);
     printf("s6 = %d\n",mip.s7);
     printf("s7 = %d\n",mip.s8);
+    
+
 
 }

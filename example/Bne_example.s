@@ -1,9 +1,14 @@
 .globl main
 .text
+x: 3
 li $s2 , 0
 li $s1 ,10
+li $v0,1
+la $a0, x
+syscall 
 li $s3 , 0
 for:
     addi    $s2 , $s2 , 1
     bne $s2,$s1 for
-mul $s3 , $s1 , $s2 
+    li      $v0, 10      
+    syscall

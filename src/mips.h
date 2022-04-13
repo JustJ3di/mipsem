@@ -135,6 +135,8 @@ static Mips mip = { .a0 = 0,
 
 
 
+int system_call(int,Line*);
+
 
 void set_value(const char *,int);
 

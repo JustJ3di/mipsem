@@ -6,7 +6,8 @@ main:
     li  $s1 , 2
 for:
     beq		$s2, $s0, endfor
-    add		$s0, $s0, $s1
+    addi		$s0, $s0, 1
     b for
 endfor:
-    exit    
+li $v0,10
+syscall
