@@ -1,10 +1,13 @@
 .globl main
 .text
-x: 3
+n: .word 10
 li $s2 , 0
 li $s1 ,10
 li $v0,1
-la $a0, x
+la $a0, $s1
+syscall 
+li $v0,1
+la $a0, n
 syscall 
 li $s3 , 0
 for:

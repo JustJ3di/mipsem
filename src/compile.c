@@ -589,6 +589,7 @@ void  compile(Line ist[],size_t n_istr){
         }else if (strcmp("globl.",ist[istr].token[0])== 0 )
         {
             push_new_label(ist[istr].token[1],istr);
+            istr++;
 
         }else if (strcmp("syscall",ist[istr].token[0]) == 0)
         {
@@ -599,24 +600,36 @@ void  compile(Line ist[],size_t n_istr){
                 goto done;        
 
             case PRINT_INT:
-                printf("%d\n",atoi(ist[mip.a0].token[1]));
+      
+                printf("%d\n",mip.a0);
+                
                 break;
 
+            case PRINT_CHAR:
+                assert(isalpha(ist[mip.a0].token[1][1]) == 0);
+                printf("'%c'\n",ist[mip.a0].token[1][1]);
+                break;
             default:
                 break;
             }
             istr++;
         }else if (strcmp("la",ist[istr].token[0]) == 0)
         {
-            
-            set_value(ist[istr].token[1],pop_istruction_number_from_label(ist[istr].token[2]));//we save 
+        
+            if (ist[istr].token[2][0] == '$'){
+
+                set_value(ist[istr].token[1],pop_register(ist[istr].token[2]));
+                
+            }else{
+                set_value(ist[istr].token[1],atoi(ist[pop_istruction_number_from_label(ist[istr].token[2])].token[2]));//we save 
+            }
             istr++;
         
         }else{
-
+            
             if(pop_istruction_number_from_label(ist[istr].token[0])<0)
                 push_new_label(ist[istr].token[0],istr);  
-                if (strcmp(ist[istr].token[0],".asciiz") == 0)
+                if (strcmp(ist[istr].token[1],".asciiz") == 0)
                 {
                     push_new_label(ist[istr].token[0],istr);
                 }
