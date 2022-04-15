@@ -64,10 +64,6 @@ int main(int argc, char const *argv[]){
 		size_t size_len = strlen(b);
 		new_line  = (Line *)init_line(b,istr,size_len);
 		assert(new_line!=NULL);
-
-
-		
-		
 		stack[istr] = *new_line;
 		istr++;
 		free(new_line);

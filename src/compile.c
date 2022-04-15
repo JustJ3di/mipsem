@@ -7,6 +7,7 @@
 #endif
 
 
+
 int system_call(int istr,Line *ist){
 
     int n = mip.v0;
@@ -25,7 +26,6 @@ int system_call(int istr,Line *ist){
     default:
         break;
     }
-
 
 
 }
@@ -298,6 +298,7 @@ int is_label(const char *lab){
 
 void  compile(Line ist[],size_t n_istr){
 
+
     int istr = 0;
     while (istr < n_istr)
     {
@@ -367,6 +368,7 @@ void  compile(Line ist[],size_t n_istr){
                 #endif
                 if (check == -1)
                 {
+                        
 
                     do
                     {
@@ -600,15 +602,17 @@ void  compile(Line ist[],size_t n_istr){
                 goto done;        
 
             case PRINT_INT:
-      
-                printf("%d\n",mip.a0);
-                
+                printf("%d\n",atoi(ist[mip.a0].token[2]));
                 break;
 
             case PRINT_CHAR:
                 assert(isalpha(ist[mip.a0].token[1][1]) == 0);
                 printf("'%c'\n",ist[mip.a0].token[1][1]);
                 break;
+            case PRINT_STRING:
+                printf("%s\n",ist[mip.a0].token[2]);
+                break;
+
             default:
                 break;
             }
@@ -616,23 +620,17 @@ void  compile(Line ist[],size_t n_istr){
         }else if (strcmp("la",ist[istr].token[0]) == 0)
         {
         
-            if (ist[istr].token[2][0] == '$'){
-
-                set_value(ist[istr].token[1],pop_register(ist[istr].token[2]));
-                
-            }else{
-                set_value(ist[istr].token[1],atoi(ist[pop_istruction_number_from_label(ist[istr].token[2])].token[2]));//we save 
-            }
+   
+            set_value(ist[istr].token[1],pop_istruction_number_from_label(ist[istr].token[2]));//we save 
+            
             istr++;
+            
         
         }else{
             
             if(pop_istruction_number_from_label(ist[istr].token[0])<0)
                 push_new_label(ist[istr].token[0],istr);  
-                if (strcmp(ist[istr].token[1],".asciiz") == 0)
-                {
-                    push_new_label(ist[istr].token[0],istr);
-                }
+                
                 
             
             istr++;
@@ -643,6 +641,8 @@ void  compile(Line ist[],size_t n_istr){
     }
 
 done:
+    printf("END compilation...\n");
+#if DEBUG
 	printf("s0 = %d\n",mip.s0);
     printf("s1 = %d\n",mip.s1);
     printf("s2 = %d\n",mip.s2);
@@ -652,7 +652,7 @@ done:
     printf("s5 = %d\n",mip.s6);
     printf("s6 = %d\n",mip.s7);
     printf("s7 = %d\n",mip.s8);
-    
-
+    printf("a0 = %d\n",mip.a0);
+#endif
 
 }
