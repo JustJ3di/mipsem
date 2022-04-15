@@ -602,7 +602,37 @@ void  compile(Line ist[],size_t n_istr){
                 goto done;        
 
             case PRINT_INT:
-                printf("%d\n",atoi(ist[mip.a0].token[2]));
+                if (mip.a0>=8000)
+                {
+                    switch (mip.a0)
+                    {
+                    case 8000:
+                        printf("%d\n",mip.s0);
+                        break;
+                    case 8001:
+                        printf("%d\n",mip.s1);
+                        break;
+                    case 8002:
+                        printf("%d\n",mip.s2);
+                        break;
+                    case 8003:
+                        printf("%d\n",mip.s3);
+                        break;
+                    case 8004:
+                        printf("%d\n",mip.s4);
+                        break;
+                    case 8005:
+                        printf("%d\n",mip.s5);
+                        break;
+                    case 8006:
+                        printf("%d\n",mip.s6);
+                        break;
+                    case 8007:
+                        printf("%d\n",mip.s7);
+                        break;
+                    }
+                }else
+                    printf("%d\n",atoi(ist[mip.a0].token[2]));
                 break;
 
             case PRINT_CHAR:
@@ -620,8 +650,46 @@ void  compile(Line ist[],size_t n_istr){
         }else if (strcmp("la",ist[istr].token[0]) == 0)
         {
         
-   
-            set_value(ist[istr].token[1],pop_istruction_number_from_label(ist[istr].token[2]));//we save 
+            if (ist[istr].token[2][0] == '$')
+            {
+                char c = ist[istr].token[2][2];
+                
+                
+                int reg = 8000;
+                switch (c)
+                {
+                case '0':
+                    reg = 8000;
+                    break;
+                case '1':
+                    reg = 8001;
+                    break;
+                case '2':
+                    reg = 8002;
+                    break;
+                case '3':
+                    reg = 8003;
+                    break;
+                case '4':
+                    reg = 8004;
+                    break;
+                case '5':
+                    reg = 8005;
+                    break;
+                case '6':
+                    reg = 8006;
+                    break;
+                case '7':
+                    reg = 8007;
+                    break;
+                case '8':
+                    reg = 8008;
+                    break;
+                }
+
+                set_value(ist[istr].token[1],reg);
+            }else
+                set_value(ist[istr].token[1],pop_istruction_number_from_label(ist[istr].token[2]));//we save 
             
             istr++;
             
@@ -632,7 +700,6 @@ void  compile(Line ist[],size_t n_istr){
                 push_new_label(ist[istr].token[0],istr);  
                 
                 
-            
             istr++;
               
         }
@@ -641,7 +708,7 @@ void  compile(Line ist[],size_t n_istr){
     }
 
 done:
-    printf("END compilation...\n");
+    printf("\n\nEND compilation...\n");
 #if DEBUG
 	printf("s0 = %d\n",mip.s0);
     printf("s1 = %d\n",mip.s1);
