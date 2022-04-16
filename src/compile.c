@@ -708,8 +708,9 @@ void  compile(Line ist[],size_t n_istr){
     }
 
 done:
-    printf("\n\nEND compilation...\n");
-#if DEBUG
+    printf("\n\nEND compilation...\n\n");
+#if REGISTER
+    printf("Register:\n\n");
 	printf("s0 = %d\n",mip.s0);
     printf("s1 = %d\n",mip.s1);
     printf("s2 = %d\n",mip.s2);
@@ -720,6 +721,11 @@ done:
     printf("s6 = %d\n",mip.s7);
     printf("s7 = %d\n",mip.s8);
     printf("a0 = %d\n",mip.a0);
+    printf("a1 = %d\n",mip.a1);
+    printf("a2 = %d\n",mip.a2);
+    printf("v0 = %d\n",mip.v0);
 #endif
+
+    printf("\n");
 
 }

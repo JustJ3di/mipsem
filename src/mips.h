@@ -4,6 +4,8 @@
 #include"parser.h"
 
 
+#define REGISTER 1
+
 /*
 The mips architecture provides the MAL register
 so for all the operaton.
