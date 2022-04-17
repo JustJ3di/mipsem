@@ -348,7 +348,44 @@ void  compile(Line ist[],size_t n_istr){
 
         }else if(strcmp(ist[istr].token[0],"move")==0){
 
-            set_value(ist[istr].token[1],pop_register(ist[istr].token[2]));
+            if (ist[istr].token[1][1] == 'a')
+            {
+                char c = ist[istr].token[2][2];                
+                int reg = 8000;
+                switch (c)
+                {
+                case '0':
+                    reg = 8000;
+                    break;
+                case '1':
+                    reg = 8001;
+                    break;
+                case '2':
+                    reg = 8002;
+                    break;
+                case '3':
+                    reg = 8003;
+                    break;
+                case '4':
+                    reg = 8004;
+                    break;
+                case '5':
+                    reg = 8005;
+                    break;
+                case '6':
+                    reg = 8006;
+                    break;
+                case '7':
+                    reg = 8007;
+                    break;
+                case '8':
+                    reg = 8008;
+                    break;
+                }
+                set_value(ist[istr].token[1],reg);
+            }else
+                set_value(ist[istr].token[1],pop_register(ist[istr].token[2]));
+
             istr++;
         
         }else if (strcmp(ist[istr].token[0],"addi")==0){

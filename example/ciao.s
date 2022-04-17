@@ -5,16 +5,17 @@ result1:    .asciiz  "The sum of the first "
 result2:    .asciiz  " integers is "
 newline:    .asciiz  "\n"
 main:
-    li      $s7,10
+    li      $s7,55
     move    $s0, $s7
-    li      $s1, 0          ì
+    li      $s1, 0          
     li      $s2, 0          
 for:
     blt     $s0, $s2, endf  
     add     $s1, $s1, $s2   
-    add     $s2, $s2, 1     
+    addi     $s2, $s2, 1     
     b       for             
-endf:    
+endf: 
+
     li      $v0, 4          
     la      $a0, result1
     syscall
