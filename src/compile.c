@@ -685,7 +685,6 @@ void  compile(Line ist[],size_t n_istr){
                 printf("%s\n",ist[mip.a0].token[2]);
                 break;
             case READ_INT:
-            print("ciuao\n");
                 scanf("%s",input);
                 set_value("$v0",atoi(input));
                 break;
