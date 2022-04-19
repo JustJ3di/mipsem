@@ -25,6 +25,10 @@ int system_call(int istr,Line *ist){
         return SBRK;
     case READ_INT:
         return READ_INT;
+    case READ_CHAR:
+        return READ_CHAR;
+    case READ_STRING:
+        return READ_STRING;
     default:
         break;
     }

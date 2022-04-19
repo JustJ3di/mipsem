@@ -6,7 +6,7 @@
 #include<ctype.h>
 #include<stdlib.h>
 
-#define DEBUG 0
+#define DEBUG 1
 
 typedef struct line Line;
 
