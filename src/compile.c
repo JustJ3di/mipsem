@@ -23,6 +23,8 @@ int system_call(int istr,Line *ist){
         return PRINT_INT;
     case SBRK:
         return SBRK;
+    case READ_INT:
+        return READ_INT;
     default:
         break;
     }
@@ -277,9 +279,9 @@ li 	Rd, const 	load immediate
 
 int is_label(const char *lab){
 
-    char *key[] = {"add","addi","sub","mul","rem","move","li","beq","b","jr","bgt","blt"};
+    char *key[] = {"add","addi","sub","mul","rem","move","li","la","beq","b","jr","bgt","blt"};
     
-    for (size_t i = 0; i < 12; i++)
+    for (size_t i = 0; i < 13; i++)
     {
         
         if (strcmp(lab,key[i]) == 0)
@@ -632,6 +634,9 @@ void  compile(Line ist[],size_t n_istr){
 
         }else if (strcmp("syscall",ist[istr].token[0]) == 0)
         {
+            
+            char input[32];//possible input from user
+            
             int sys = system_call(istr,ist);
             switch (sys)
             {
@@ -679,7 +684,11 @@ void  compile(Line ist[],size_t n_istr){
             case PRINT_STRING:
                 printf("%s\n",ist[mip.a0].token[2]);
                 break;
-
+            case READ_INT:
+            print("ciuao\n");
+                scanf("%s",input);
+                set_value("$v0",atoi(input));
+                break;
             default:
                 break;
             }
@@ -726,7 +735,7 @@ void  compile(Line ist[],size_t n_istr){
 
                 set_value(ist[istr].token[1],reg);
             }else
-                set_value(ist[istr].token[1],pop_istruction_number_from_label(ist[istr].token[2]));//we save 
+                set_value(ist[istr].token[1],pop_istruction_number_from_label(ist[istr].token[2]));//we save the address (istr number)
             
             istr++;
             
