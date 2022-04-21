@@ -27,7 +27,6 @@ SOFTWARE.
 /*
 the purpose of this code is to divide by token the instructions read from the file, 
 excluding all special characters such as commas, spaces, tabs, newlines and endlines.
-
 */
 
 
