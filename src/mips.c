@@ -8,7 +8,7 @@
 #include"mips.h"
 #include "stack.h"
 
-#define INIT_SIZE 200
+#define INIT_SIZE 1000
 
 static Line * init_stack(Line *stack,int *n){
 

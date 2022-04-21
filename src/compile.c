@@ -283,9 +283,9 @@ li 	Rd, const 	load immediate
 
 int is_label(const char *lab){
 
-    char *key[] = {"add","addi","sub","mul","rem","move","li","la","beq","b","jr","bgt","blt"};
+    char *key[] = {"add","addi","sub","mul","rem","move","li","la","beq","b","jr","bgt","blt","syscall"};
     
-    for (size_t i = 0; i < 13; i++)
+    for (size_t i = 0; i < 14; i++)
     {
         
         if (strcmp(lab,key[i]) == 0)
@@ -766,9 +766,9 @@ done:
     printf("s3 = %d\n",mip.s3);
     printf("s4 = %d\n",mip.s4);
     printf("s5 = %d\n",mip.s5);
-    printf("s5 = %d\n",mip.s6);
-    printf("s6 = %d\n",mip.s7);
-    printf("s7 = %d\n",mip.s8);
+    printf("s6 = %d\n",mip.s6);
+    printf("s7 = %d\n",mip.s7);
+    printf("s8 = %d\n",mip.s8);
     printf("a0 = %d\n",mip.a0);
     printf("a1 = %d\n",mip.a1);
     printf("a2 = %d\n",mip.a2);
