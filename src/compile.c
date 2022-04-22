@@ -28,9 +28,35 @@ SOFTWARE.
     #include<unistd.h>
 #endif
 
+static Mips mip = { .s0 = 0,
+                    .s1 = 0,
+                    .s2 = 0,
+                    .s3 = 0,
+                    .s4 = 0,
+                    .s5 = 0,
+                    .s6 = 0,
+                    .s7 = 0,
+                    .s8 = 0,
+                    .t0 = 0,
+                    .t1 = 0,
+                    .t2 = 0,
+                    .t3 = 0,
+                    .t4 = 0,
+                    .t5 = 0,
+                    .t6 = 0,
+                    .t7 = 0,
+                    .t8 = 0,
+                    .a0 = 0,
+                    .a1 = 0,
+                    .a2 = 0,
+                    .a3 = 0,
+                    .v0 = 0,
+                    .v1 = 0
+                };
 
 
-int system_call(int istr,Line *ist){
+
+int system_call(){
 
     int n = mip.v0;
     switch (n)
@@ -55,7 +81,7 @@ int system_call(int istr,Line *ist){
         break;
     }
 
-
+    return -1;
 }
 
 
@@ -242,7 +268,7 @@ int pop_register(const char *reg){
                     return mip.v0;
                     
                 case '1':
-                    mip.v1 ;
+                    return mip.v1 ;
                     
             }
 
@@ -287,7 +313,7 @@ int pop_register(const char *reg){
 
      
     }
-
+    return -1;
 }
 
 /*
@@ -327,7 +353,7 @@ int is_label(const char *lab){
 void  compile(Line ist[],size_t n_istr){
 
 
-    int istr = 0;
+    size_t istr = 0;
     while (istr < n_istr)
     {
 
@@ -663,7 +689,7 @@ void  compile(Line ist[],size_t n_istr){
             
             char input[32];//possible input from user
             
-            int sys = system_call(istr,ist);
+            int sys = system_call();
             switch (sys)
             {
             case EXIT:
@@ -791,6 +817,12 @@ done:
     printf("s6 = %d\n",mip.s6);
     printf("s7 = %d\n",mip.s7);
     printf("s8 = %d\n",mip.s8);
+    printf("t0 = %d\n",mip.t0);
+    printf("t1 = %d\n",mip.t1);
+    printf("t2 = %d\n",mip.t2);
+    printf("t3 = %d\n",mip.t3);
+    printf("t4 = %d\n",mip.t4);
+    printf("t5 = %d\n",mip.t5);
     printf("a0 = %d\n",mip.a0);
     printf("a1 = %d\n",mip.a1);
     printf("a2 = %d\n",mip.a2);

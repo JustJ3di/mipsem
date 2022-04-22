@@ -42,7 +42,7 @@ struct hash_label
 };
 
 
-static Map *head = NULL;
+
 
 void push_new_label(const char *label,int line);
 

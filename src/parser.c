@@ -51,7 +51,7 @@ void *init_line(const char *string , int numb_istr,size_t size_line){
 	
 
 
-	while(i<size_line+1){
+	while(i<(int)size_line+1){
 
 
 		switch (string[i])

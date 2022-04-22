@@ -4,7 +4,7 @@
 #include"parser.h"
 
 
-#define REGISTER 1
+#define REGISTER 0
 
 /*
 Copyright (c) <2022> <Emanuele d'Ajello>
@@ -129,40 +129,12 @@ enum sys_call{
 };
 
 
-static Mips mip = { .a0 = 0, 
-                    .a1 = 0, 
-                    .a2 = 0,
-                    .s0 = 0,
-                    .s1 = 0,
-                    .s2 = 0,
-                    .s3 = 0,
-                    .s4 = 0,
-                    .s5 = 0,
-                    .s6 = 0,
-                    .s7 = 0,
-                    .s8 = 0,
-                    .t0 = 0,
-                    .t1 = 0,
-                    .t2 = 0,
-                    .t3 = 0,
-                    .t4 = 0,
-                    .t5 = 0,
-                    .t6 = 0,
-                    .t7 = 0,
-                    .t8 = 0,
-                    .a0 = 0,
-                    .a1 = 0,
-                    .a2 = 0,
-                    .a3 = 0,
-                    .v0 = 0,
-                    .v1 = 0
-                
-                };
 
 
 
 
-int system_call(int,Line*);
+
+int system_call();
 
 
 void set_value(const char *,int);

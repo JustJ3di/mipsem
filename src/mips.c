@@ -63,10 +63,15 @@ static Line * init_stack(Line *stack,int *n){
 
 int main(int argc, char const *argv[]){
 
+	if (argc<2)
+	{
+		fprintf(stderr,"error\n");
+	}
+	
 
 	FILE *file = fopen(argv[1],"r");
 	
-
+	
 	assert(file!=NULL);
 
 	
