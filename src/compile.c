@@ -331,6 +331,12 @@ li 	Rd, const 	load immediate
 
 int is_label(const char *lab){
 
+    /*
+    * This funcion provide to verify if a a token isnt a label
+    * For key[] contains all the special token that the compiler hasnt to consider as a label.
+    */
+
+
     char *key[] = {"add","addi","sub","mul","rem","move","li","la","beq","b","jr","bgt","blt","syscall"};
     
     for (size_t i = 0; i < 14; i++)
