@@ -52,7 +52,7 @@ void push_new_label(const char *label,int line){
         
     }
     
-#if DEBUG
+#ifdef DEBUG
     printf("label : (%s) saved at line %d\n",new->label,new->line_number);
 #endif
 
