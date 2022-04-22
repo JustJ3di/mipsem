@@ -1,6 +1,6 @@
 .globl main
 .text
-main:
+main: #CIAO QUESTO È UN COMMENTO
     li  $s0 , 0
     li  $s2 , 10
     li  $s1 , 2

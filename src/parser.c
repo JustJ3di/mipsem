@@ -78,6 +78,14 @@ void *init_line(const char *string , int numb_istr,size_t size_line){
 			i++;
 			break;
 
+		case '#':
+			do
+			{	
+				i++;
+
+			} while (string[i]!='\n' && string[i] != '\0');
+
+			break;
 		case '"':
 			do
 			{	

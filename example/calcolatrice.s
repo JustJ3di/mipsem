@@ -9,14 +9,14 @@ resul: .asciiz "risultato = "
 main:
     li      $s0 , 0
     li      $s1 , 1
-    li      $t1 , 1
-    li      $t2 , 2
-    li      $t3 , 3
-    li      $t4 , 4
+    li      $t1 , 1 #valore temporaneo per +
+    li      $t2 , 2 #valore temporaneo per -
+    li      $t3 , 3 #valore temporaneo per *
+    li      $t4 , 4 #valore temporaneo per /
     li      $v0 , 4         
     la      $a0 , init
     syscall 
-while:
+while: #inizio ciclo delle istruzioni
     li      $v0, 4         
     la      $a0, first 
     syscall
@@ -39,21 +39,21 @@ while:
     beq     $s4 , $t2 , sot
     beq     $s4 , $t3 , molt
     beq     $s4 , $t4 , divi
-sum:
+sum: #SOMMA
     add $s2 , $s3 , $s2
     b finish
-sot:
+sot: #DIFFERENZA
     sub $s2 , $s2 , $s3
     b finish
-molt:
+molt: #MOLTIPLICAZIONE
     mul $s2 , $s3 , $s2
     b finish
-divi:
+divi: #DIVISIONE
     div $s2 , $s2 , $s3
     b finish
-finish:
+finish: 
     li $v0,4
-    la $a0,resul
+    la $a0,resul 
     syscall
     li $v0,1
     la $a0,$s2
@@ -64,6 +64,6 @@ finish:
     li  $v0 , 5       
     syscall
     move $s1 , $v0
-    bne $s0 , $s1 , while
+    bne $s0 , $s1 , while #JUMP ALL'INIZIO DELLE ISTRUZIONI
     li $v0 , 10
     syscall
