@@ -70,7 +70,7 @@ void *init_line(const char *string , int numb_istr,size_t size_line){
 				new->total_token++;
 				t++;
 				j = 0;
-#if DEBUG
+#ifdef DEBUG
 				printf("(%s)\n",tokenize);
 #endif
 			}

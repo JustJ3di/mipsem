@@ -24,7 +24,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#if DEBUG
+#ifndef DEBUG
     #include<unistd.h>
 #endif
 
@@ -358,8 +358,8 @@ void  compile(Line ist[],size_t n_istr){
     {
 
 
-        #if DEBUG
-            printf("istr n %d\n",istr);
+        #ifdef DEBUG
+            printf("istr n %d\n",(int)istr);
         #endif
 
         if (strcmp(ist[istr].token[0],"li")==0)
@@ -454,7 +454,7 @@ void  compile(Line ist[],size_t n_istr){
                     
                 int check = pop_istruction_number_from_label(ist[istr].token[3]);   
                 int is = istr;
-                #if DEBUG
+                #ifdef DEBUG
                 printf("check = %d",check);
                 #endif
                 if (check == -1)
@@ -486,7 +486,7 @@ void  compile(Line ist[],size_t n_istr){
             
             int check = pop_istruction_number_from_label(ist[istr].token[1]);   
             int is = istr;
-            #if DEBUG
+            #ifdef DEBUG
             printf("check = %d",check);
             #endif
             if (check == -1)
@@ -530,7 +530,7 @@ void  compile(Line ist[],size_t n_istr){
 
                 int check = pop_istruction_number_from_label(ist[istr].token[3]);   
                 int is = istr;
-                #if DEBUG
+                #ifdef DEBUG
                 printf("check = %d",check);
                 #endif
                 if (check == -1)
@@ -561,7 +561,7 @@ void  compile(Line ist[],size_t n_istr){
 
                 int check = pop_istruction_number_from_label(ist[istr].token[3]);   
                 int is = istr;
-                #if DEBUG
+                #ifdef DEBUG
                 printf("check = %d",check);
                 #endif
                 if (check == -1)
@@ -592,7 +592,7 @@ void  compile(Line ist[],size_t n_istr){
 
                 int check = pop_istruction_number_from_label(ist[istr].token[3]);   
                 int is = istr;
-                #if DEBUG
+                #ifdef DEBUG
                 printf("check = %d",check);
                 #endif
                 if (check == -1)
@@ -623,7 +623,7 @@ void  compile(Line ist[],size_t n_istr){
 
                 int check = pop_istruction_number_from_label(ist[istr].token[3]);   
                 int is = istr;
-                #if DEBUG
+                #ifdef DEBUG
                 printf("check = %d",check);
                 #endif
                 if (check == -1)
@@ -654,7 +654,7 @@ void  compile(Line ist[],size_t n_istr){
 
                 int check = pop_istruction_number_from_label(ist[istr].token[3]);   
                 int is = istr;
-                #if DEBUG
+                #ifdef DEBUG
                 printf("check = %d",check);
                 #endif
                 if (check == -1)
@@ -806,7 +806,7 @@ void  compile(Line ist[],size_t n_istr){
 
 done:
     printf("\n\nEND compilation...\n\n");
-#if REGISTER
+#ifndef REGISTER
     printf("Register:\n\n");
 	printf("s0 = %d\n",mip.s0);
     printf("s1 = %d\n",mip.s1);

@@ -30,7 +30,7 @@ SOFTWARE.
 #include<ctype.h>
 #include<stdlib.h>
 
-#define DEBUG 0
+
 
 typedef struct line Line;
 

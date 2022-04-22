@@ -108,7 +108,7 @@ int main(int argc, char const *argv[]){
 
 
 
-#if DEBUG
+#ifdef DEBUG
 	print();
 #endif
 
