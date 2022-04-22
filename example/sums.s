@@ -3,7 +3,6 @@
 prompt:     .asciiz  "Please enter a positive integer:  "
 result1:    .asciiz  "The sum of the first "
 result2:    .asciiz  " integers is "
-newline:    .asciiz  "\n"
     .text
 main:
     li      $v0, 4         
@@ -31,12 +30,6 @@ endf:
     syscall
     li      $v0, 1         
     move    $a0, $s1
-    syscall
-    li      $v0, 4         
-    la      $a0, newline
-    syscall
-    li      $v0, 4
-    la      $a0, newline
     syscall
     li      $v0, 10       
     syscall

@@ -66,13 +66,17 @@ int main(int argc, char const *argv[]){
 	if (argc<2)
 	{
 		fprintf(stderr,"error\n");
+		exit(EXIT_FAILURE);
 	}
 	
 
 	FILE *file = fopen(argv[1],"r");
 	
 	
-	assert(file!=NULL);
+	if (file!=NULL)
+	{
+		printf("file error\n");
+	}
 
 	
 	size_t n = 256;
