@@ -22,7 +22,9 @@ struct line{
 ## Stack
 For memory it is done with a simple stack structure.
 ```c
-struct hash_label
+typedef struct label Map;
+
+struct label
 {
 
     int line_number;
@@ -34,8 +36,9 @@ struct hash_label
     char label[];
 
 };
+
 ```
 The allocation of this structure is very simple every time the compile finds a new label, it saves it on the stack by allocating a new structure.
 ```c
-    Map *new = (Map *)malloc(sizeof(Map) + size_label + 1);
+Map *new = (Map *)malloc(sizeof(Map) + size_label + 1);
 ```
