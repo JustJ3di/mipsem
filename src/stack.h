@@ -26,9 +26,9 @@ SOFTWARE.
 
 #include"mips.h"
 
-typedef struct hash_label Map;
+typedef struct label Map;
 
-struct hash_label
+struct label
 {
 
     int line_number;
