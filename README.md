@@ -1,6 +1,6 @@
 # mipsem how run it ?
 
-sh run.h <filename> for run it.
+sh run.h "filename" for run it.
 
 # Simulator
 The software is a lightweight mips assembly simulator,
