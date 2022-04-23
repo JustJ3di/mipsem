@@ -34,6 +34,8 @@ struct hash_label
     char label[];
 
 };
-
-
+```
+The allocation of this structure is very simple every time the compile finds a new label, it saves it on the stack by allocating a new structure.
+```c
+    Map *new = (Map *)malloc(sizeof(Map) + size_label + 1);
 ```
