@@ -812,7 +812,7 @@ void  compile(Line ist[],size_t n_istr){
 
 done:
     printf("\n\nEND compilation...\n\n");
-#ifndef REGISTER
+#if REGISTER
     printf("Register:\n\n");
 	printf("s0 = %d\n",mip.s0);
     printf("s1 = %d\n",mip.s1);
