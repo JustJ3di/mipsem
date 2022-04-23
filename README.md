@@ -21,3 +21,19 @@ struct line{
 ```
 ## Stack
 For memory it is done with a simple stack structure.
+```c
+struct hash_label
+{
+
+    int line_number;
+
+    int size;
+
+    Map *next;
+
+    char label[];
+
+};
+
+
+```
