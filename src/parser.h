@@ -42,7 +42,6 @@ struct line{
 
 	size_t istr;
 
-
 };
 
 //Build the object
