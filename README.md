@@ -6,7 +6,7 @@ sh run.h <filename> for run it.
 The software is a lightweight mips assembly simulator,
 it can be considered as a simple interpreter of the latter.
 
- # Parser
+ ## Parser
  The parser is very simple tokenize the <.s> file and isnerate all the tokens in an Istr structure
 ```c
 struct line{
@@ -19,3 +19,5 @@ struct line{
 	
 };
 ```
+## Stack
+For memory it is done with a simple stack structure.
